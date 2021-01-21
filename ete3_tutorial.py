@@ -171,35 +171,35 @@ for leaf in t.iter_leaves():
 Tree visualization
 How to visualize a tree and print it to a file:
 '''
-#
+
 # t.show()
-#
-# # You can print the image in different formats by using the render function:
-# # t.render("image.pdf") # this will save the tree to the working directory
-#
-# '''
-# Tree style
-# To change the visualization format of a tree, you first need to create a tree style,
-# that will be applied to the tree:
-# '''
-# t = ete3.Tree("tree.newick", format=1)
-#
-# ts = ete3.TreeStyle()
-#
-# # The tree style controls the main visualization features of the tree. for example:
-# # ts.show_leaf_name=True
-# # ts.show_branch_length=False
-# # ts.show_branch_support=False
-#
-# # t.show(tree_style=ts)
-#
-# # Other things the tree style can control:
-# ts.mode="c"
-# ts.arc_span=180
-# ts.arc_start=-180
-# ts.title.add_face(ete3.TextFace("Exampole", fsize=20), column=0)
-#
-# # t.show(tree_style=ts)
+
+# You can print the image in different formats by using the render function:
+t.render("image.pdf") # this will save the tree to the working directory
+
+'''
+Tree style
+To change the visualization format of a tree, you first need to create a tree style,
+that will be applied to the tree:
+'''
+t = ete3.Tree("tree.newick", format=1)
+
+ts = ete3.TreeStyle()
+
+# The tree style controls the main visualization features of the tree. for example:
+# ts.show_leaf_name=True
+# ts.show_branch_length=False
+# ts.show_branch_support=False
+
+# t.show(tree_style=ts)
+
+# Other things the tree style can control:
+ts.mode="c"
+ts.arc_span=180
+ts.arc_start=-180
+ts.title.add_face(ete3.TextFace("Example", fsize=20), column=0)
+
+# t.show(tree_style=ts)
 
 '''
 Node faces
@@ -221,5 +221,5 @@ ts = TreeStyle()
 # Add two text faces to different columns
 t.add_face(TextFace("hola "), column=0, position = "branch-right")
 t.add_face(TextFace("mundo!"), column=1, position = "branch-right")
-t.show(tree_style=ts)
+# t.show(tree_style=ts)
 print(t)
