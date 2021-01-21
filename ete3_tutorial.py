@@ -158,5 +158,67 @@ print(leaf.vowel)
 leaf.vowel = "Something Else"
 print(leaf.vowel)
 
-print("again")
+#You can also create multiple features at the same time
+for leaf in t.iter_leaves():
+    leaf.add_features(feature1=0, feature2=[])
 
+# To know which features are assigned to your node, you can simply:
+for leaf in t.iter_leaves():
+    print(leaf.features)
+
+
+'''
+Tree visualization
+How to visualize a tree and print it to a file:
+'''
+
+# t.show()
+
+# You can print the image in different formats by using the render function:
+t.render("image.pdf") # this will save the tree to the working directory
+
+'''
+Tree style
+To change the visualization format of a tree, you first need to create a tree style,
+that will be applied to the tree:
+'''
+t = ete3.Tree("tree.newick", format=1)
+
+ts = ete3.TreeStyle()
+
+# The tree style controls the main visualization features of the tree. for example:
+ts.show_leaf_name=True
+ts.show_branch_length=False
+ts.show_branch_support=False
+
+t.show(tree_style=ts)
+
+# Other things the tree style can control:
+ts.mode="c"
+ts.arc_span=180
+ts.arc_start=-180
+ts.title.add_face(ete3.TextFace("Exampole", fsize=20), column=0)
+
+t.show(tree_style=ts)
+
+'''
+Node faces
+Faces can be used to add additional information to the trees
+
+To add faces to a tree, you first need to create a Face object and then you need to
+add it to one or several nodes in the tree (can be internal nodes or leaves).
+Here are the main kinds of faces (this assumes you have exported the
+Faces module from ete3: from ete3 export Faces):
+'''
+
+from ete3 import Tree, TreeStyle, TextFace
+t = Tree( "((a,b),c);" )
+
+# Basic tree style
+ts = TreeStyle()
+ts.show_leaf_name = True
+
+# Add two text faces to different columns
+t.add_face(TextFace("hola "), column=0, position = "branch-right")
+t.add_face(TextFace("mundo!"), column=1, position = "branch-right")
+t.show(tree_style=ts)
