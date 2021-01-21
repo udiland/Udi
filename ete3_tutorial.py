@@ -175,8 +175,7 @@ How to visualize a tree and print it to a file:
 # t.show()
 
 # You can print the image in different formats by using the render function:
-t.render("image.pdf") # this will save the tree to the working directory
-
+t.render("/groups/itay_mayrose/udiland/crispys_tomato/families/filtering_scripts/image.pdf") # this will save the tree to the working directory
 '''
 Tree style
 To change the visualization format of a tree, you first need to create a tree style,
@@ -187,9 +186,9 @@ t = ete3.Tree("tree.newick", format=1)
 ts = ete3.TreeStyle()
 
 # The tree style controls the main visualization features of the tree. for example:
-# ts.show_leaf_name=True
-# ts.show_branch_length=False
-# ts.show_branch_support=False
+ts.show_leaf_name=True
+ts.show_branch_length=False
+ts.show_branch_support=False
 
 # t.show(tree_style=ts)
 
@@ -203,12 +202,20 @@ ts.title.add_face(ete3.TextFace("Example", fsize=20), column=0)
 
 '''
 Node faces
-Faces can be used to add additional information to the trees
+Node faces are small pieces of graphical information that can be linked to nodes. For instance, 
+text labels or external images could be linked to nodes and they will be plotted within the tree image.
 
-To add faces to a tree, you first need to create a Face object and then you need to
-add it to one or several nodes in the tree (can be internal nodes or leaves).
-Here are the main kinds of faces (this assumes you have exported the
-Faces module from ete3: from ete3 export Faces):
+Several types of node faces are provided by the main ete3 module, ranging from simple text (TextFace) and geometric
+ shapes (CircleFace), to molecular sequence representations (SequenceFace), heatmaps and profile plots (ProfileFace). 
+ A complete list of available faces can be found at the ete3.treeview reference page..
+
+Faces position
+Faces can be added to different areas around the node, namely branch-right, branch-top, branch-bottom or aligned. 
+Each area represents a table in which faces can be added through the TreeNode.add_face() method. For instance, 
+if two text labels want to be drawn bellow the branch line of a given node, 
+a pair of TextFace faces can be created and added to the columns 0 and 1 of the branch-bottom area:
+
+refer ot annotate_node_ete.py for graphical display
 '''
 
 from ete3 import Tree, TreeStyle, TextFace
@@ -221,5 +228,7 @@ ts = TreeStyle()
 # Add two text faces to different columns
 t.add_face(TextFace("hola "), column=0, position = "branch-right")
 t.add_face(TextFace("mundo!"), column=1, position = "branch-right")
-# t.show(tree_style=ts)
-print(t)
+t.add_face(TextFace("here"), column=2, position = "branch-bottom")
+t.show(tree_style=ts)
+t.render("/groups/itay_mayrose/udiland/crispys_tomato/families/filtering_scripts/face.pdf")
+
