@@ -221,5 +221,5 @@ ts = TreeStyle()
 # Add two text faces to different columns
 t.add_face(TextFace("hola "), column=0, position = "branch-right")
 t.add_face(TextFace("mundo!"), column=1, position = "branch-right")
-# t.show(tree_style=ts)
+t.show(tree_style=ts)
 print(t)
