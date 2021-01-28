@@ -218,7 +218,7 @@ a pair of TextFace faces can be created and added to the columns 0 and 1 of the 
 refer ot annotate_node_ete.py for graphical display
 '''
 
-from ete3 import Tree, TreeStyle, TextFace
+from ete3 import Tree, TreeStyle, TextFace, faces
 t = Tree( "((a,b),c);" )
 
 # Basic tree style
@@ -227,8 +227,24 @@ ts = TreeStyle()
 
 # Add two text faces to different columns
 t.add_face(TextFace("hola "), column=0, position = "branch-right")
-t.add_face(TextFace("mundo!"), column=1, position = "branch-right")
-t.add_face(TextFace("here"), column=2, position = "branch-bottom")
+t.add_face(TextFace("mundo!"), column=1, position = "branch-bottom")
+t.add_face(TextFace("here"), column=0, position = "branch-bottom")
+# t.show(tree_style=ts)
+# t.render("/groups/itay_mayrose/udiland/crispys_tomato/families/filtering_scripts/face.pdf")
+
+
+t = Tree( "((a,b),c);" )
+print(t)
+
+def layout(node):
+    if len(node) > 1:
+        faces.add_face_to_node(TextFace("hola"), node, column=0, position="branch-right")
+
+ts = TreeStyle()
+ts.layout_fn = layout
 t.show(tree_style=ts)
-t.render("/groups/itay_mayrose/udiland/crispys_tomato/families/filtering_scripts/face.pdf")
+
+for node in t.traverse():
+    for name in node.iter_leaf_names():
+        print(name)
 

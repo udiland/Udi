@@ -71,4 +71,4 @@ for leaf in t.iter_leaves():
 
 ts = TreeStyle()
 ts.show_scale = False
-t.render("face_positions.png", w=800, tree_style=ts)
+t.render("/groups/itay_mayrose/udiland/crispys_tomato/families/filtering_scripts/face_positions.png", w=800, tree_style=ts)
