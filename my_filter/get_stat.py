@@ -34,7 +34,10 @@ def get_fam_data(path_to_folder):
             df.loc[0, "No. of genes in family"] = n_genes
 
             # get the result of the filtering
-            tbl = pd.read_csv(path_to_folder + "/" + f + "/output_filtered_final.csv", na_values="")
+            try:
+                tbl = pd.read_csv(path_to_folder + "/" + f + "/output_filtered_final.csv", na_values="")
+            except:
+                print("No CRISPys results in " + f)
 
             # check if there are no sgrna
             if tbl.iloc[0:1,:].isnull().values.all():
