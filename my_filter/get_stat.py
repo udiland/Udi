@@ -25,7 +25,7 @@ def get_fam_data(path_to_folder):
         columns = ["No. of genes in family","sgRNA","Genes","No. of genes","score", "Max percent of family"]
         df = pd.DataFrame(columns=columns)
 
-        if os.path.isdir(f):
+        if os.path.isdir(path_to_folder + "/" + f):
             family_folder = path_to_folder + "/" + f
 
             # get the amount of genes in that family
