@@ -60,7 +60,7 @@ def get_fam_data(path_to_folder):
                     lst.append(n_genes_per_sg)
 
                 # calculate the max percent of genes that have sgRNA in the family
-                percent_sgRNA = n_genes/max(lst) * 100
+                percent_sgRNA = max(lst)/n_genes * 100
                 df.loc[0, "Max percent of family"] = percent_sgRNA
 
             # write the table
