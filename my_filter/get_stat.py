@@ -41,7 +41,7 @@ def get_fam_data(path_to_folder):
 
             # check if there are no sgrna
             if tbl.iloc[0:1,:].isnull().values.all():
-                print("No sgRNA for this family")
+                print("No sgRNA for this family " + f)
                 df.loc[0,"No. of genes in family" ] = 0
             else:
                 lst = []
