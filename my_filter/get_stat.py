@@ -35,13 +35,13 @@ def get_fam_data(path_to_folder):
 
             # get the result of the filtering
             tbl = pd.read_csv(path_to_folder + "/" + f + "/output_filtered_final.csv", na_values="")
-
+            lst = []
             # check if there are no sgrna
             if tbl.iloc[0:1,:].isnull().values.all():
                 print("No sgRNA for this family")
                 df.loc[0,"No. of genes in family" ] = 0
             else:
-                lst = []
+
                 for i in range(tbl.shape[0]):  # loop over the table and get the score and number of genes for each sgRNA
                     df.loc[i, "sgRNA"] = tbl.iloc[i, 0]
 
