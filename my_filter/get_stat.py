@@ -61,8 +61,8 @@ def get_fam_data(path_to_folder):
                     percent_sgRNA = n_genes/max(lst) * 100
                     df.loc[0, "Max percent of family"] = percent_sgRNA
 
-                # write the table
-                df.to_csv(family_folder + "/filter_stat.csv")
+            # write the table
+            df.to_csv(family_folder + "/filter_stat.csv")
 
             except:
                 print("No CRISPys results in " + f)
